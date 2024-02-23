@@ -9,6 +9,13 @@ contactRouter.get('/', (req, res)=>{
     })
 })
 
+contactRouter.post('/message', (req, res)=>{
+    res.json({
+        status: res.statusCode,
+        msg: "Contact Page"
+    })
+})
+
 export {
     contactRouter
 }
