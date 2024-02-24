@@ -17,3 +17,8 @@ function createToken(user){
 }
 
 function verifyAToken(token){}
+
+export {
+    createToken,
+    verifyAToken
+}
