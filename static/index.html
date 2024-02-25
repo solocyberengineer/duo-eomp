@@ -87,6 +87,21 @@
                                         <td class="text-center col">GET</td>
                                         <td class="text-center col">Gets a specific product</td>
                                     </tr>
+                                    <tr class="row d-flex align-items-center border p-3">
+                                        <td class="text-center col">/product/newProduct</td>
+                                        <td class="text-center col">POST</td>
+                                        <td class="text-center col">Adds a new product</td>
+                                    </tr>
+                                    <tr class="row d-flex align-items-center border p-3">
+                                        <td class="text-center col">/product/editProduct</td>
+                                        <td class="text-center col">PATCH</td>
+                                        <td class="text-center col">Edits a existing product</td>
+                                    </tr>
+                                    <tr class="row d-flex align-items-center border p-3">
+                                        <td class="text-center col">/product/delProduct/{id}</td>
+                                        <td class="text-center col">DELETE</td>
+                                        <td class="text-center col">Deletes a existing product</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -117,7 +132,10 @@
                                         <option value="/user/updateuser">/user/updateuser</option>
                                         <option value="/user/deleteuser">/user/deleteuser</option>
                                         <option value="/user/login">/user/login</option>
-                                        <option value="/user/login">/user/product</option>
+                                        <option value="/product">/product</option>
+                                        <option value="/product/newProduct">/product/newProduct</option>
+                                        <option value="/product/editProduct">/product/editProduct</option>
+                                        <option value="/product/deleteProduct">/product/deleteProduct</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2 col-lg-2">
@@ -137,6 +155,9 @@
                                     <textarea id="responseOutput" class="form-control text-secondary" style="height: 24vh;resize: none;" spellcheck="false" placeholder="request body" id="responseBodyJson" readonly>&nbsp;</textarea>
                                     <label for="responseBodyJson">response body json</label>
                                   </div>
+                            </div>
+                            <div id="error" class="m-2" style="display: none;">
+                                <span class="text-danger">Error: <small id="errorMsg">some error with</small></span>
                             </div>
                             <div class="row g-0 m-2 d-flex justify-content-end">
                                 <button id="sendRequest" class="btn btn-dark">Send</button>

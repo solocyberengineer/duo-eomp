@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 
 const userRouter = express.Router();
 
-userRouter.get('/', (req, res)=>{
+userRouter.get('/', bodyParser.json(), (req, res)=>{
     try {
         user.fetchUsers(req, res);
     } catch(e) {

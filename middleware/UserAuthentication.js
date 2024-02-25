@@ -6,9 +6,10 @@ config();
 const { sign, verify } = jwt;
 
 function createToken(user){
+    console.log( user )
     return sign({
-        emailAddress: user.emailAddress,
-        userPassword: user.Password
+        emailAdd: user.emailAdd,
+        userPass: user.userPass
     },
     process.env.SECRET_KEY,
     {
@@ -16,7 +17,9 @@ function createToken(user){
     })
 }
 
-function verifyAToken(token){}
+function verifyAToken(token){
+    console.log(token)
+}
 
 export {
     createToken,
