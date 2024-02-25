@@ -95,11 +95,58 @@
                         <h3 class="display-3 fs-3 fw-light mx-4">Playground</h3>
                         <div class="bg-white rounded-3 shadow p-2 flex-fill">
                             <!-- Playground -->
+                            <div class="row g-0 align-items-center justify-content-between m-2">
+                                <div class="col-sm-12 col-lg-6 d-flex align-content-center">
+                                    <span id="endpoint" class="text-secondary fs-6"></span>
+                                </div>
+                                <div class="col-sm-12 col-lg-3">
+                                    <select id="method" class="form-select" aria-label="Method">
+                                        <option value="GET" selected>GET</option>
+                                        <option value="POST">POST</option>
+                                        <option value="PATCH">PATCH</option>
+                                        <option value="DELETE">DELETE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row g-0 d-flex align-items-end justify-content-center m-2">
+                                <div class="col-sm-6 col-lg-4">
+                                    <small class="fs-6 text-secondary">Endpoint</small>
+                                    <select id="path" class="form-select" aria-label="path">
+                                        <option value="/user" selected>/user</option>
+                                        <option value="/user/register">/user/register</option>
+                                        <option value="/user/updateuser">/user/updateuser</option>
+                                        <option value="/user/deleteuser">/user/deleteuser</option>
+                                        <option value="/user/login">/user/login</option>
+                                        <option value="/user/login">/user/product</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-lg-2">
+                                    <input id="param" type="text" class="form-control" placeholder="/{id}">
+                                </div>
+                            </div>
+                            <div class="row g-0 m-2">
+                                <small class="fs-6 text-secondary">Request Body</small>
+                                <div class="form-floating">
+                                    <textarea id="requestBody" class="form-control text-secondary" style="height: 24vh;resize: none;" spellcheck="false" placeholder="request body" id="requestBodyJson">{}</textarea>
+                                    <label for="requestBodyJson">request body json</label>
+                                  </div>
+                            </div>
+                            <div class="row g-0 m-2">
+                                <small class="fs-6 text-secondary">Response</small>
+                                <div class="form-floating">
+                                    <textarea id="responseOutput" class="form-control text-secondary" style="height: 24vh;resize: none;" spellcheck="false" placeholder="request body" id="responseBodyJson" readonly>&nbsp;</textarea>
+                                    <label for="responseBodyJson">response body json</label>
+                                  </div>
+                            </div>
+                            <div class="row g-0 m-2 d-flex justify-content-end">
+                                <button id="sendRequest" class="btn btn-dark">Send</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="./js/main.js" type="module"></script>
     </body>
 </html>
