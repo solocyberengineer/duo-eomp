@@ -35,7 +35,7 @@ app.get('/', (req, res)=>{
     res.status(200).sendFile('/static/index.html');
 })
 
-app.use('/products', productRouter); // has to connect to database
+app.use('/product', productRouter); // has to connect to database
 app.use('/user', userRouter); // has the ability to add and remove products from database
 app.use('/contact', contactRouter); // this should send a message to us if person fills in the form
 
