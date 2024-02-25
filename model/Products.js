@@ -28,7 +28,7 @@ class Product {
     newProduct(req, res){
         let data = req.body;
 
-        const qry = `INSERT INTO Products ?`
+        const qry = `INSERT INTO Products SET ?`
 
         db.query(qry, [data], (err)=>{
             if(err) throw err;
