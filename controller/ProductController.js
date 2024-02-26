@@ -1,5 +1,6 @@
 import express from 'express';
 import { product } from '../model/index.js';
+import bodyParser from 'body-parser';
 
 const productRouter = express.Router();
 
@@ -36,7 +37,7 @@ productRouter.post('/newProduct', (req, res)=>{
         })
     }
 })
-productRouter.patch('/editProduct', (req, res)=>{
+productRouter.patch('/editProduct', bodyParser.json(), (req, res)=>{
     try {
         product.editProduct(req, res);
     } catch(e) {

@@ -51,10 +51,10 @@ class Product {
             })
         })
     }
-    updateProduct(req, res){
+    editProduct(req, res){
         let data = req.body;
 
-        const qry = `UPDATE Products SET ?;`;
+        const qry = `UPDATE Products SET ? WHERE prodID = ${data.prodID};`;
 
         db.query(qry, [data], (err)=>{
             if(err) throw err;

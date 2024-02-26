@@ -4,13 +4,13 @@ import bodyParser from 'body-parser';
 
 const userRouter = express.Router();
 
-userRouter.get('/', bodyParser.json(), (req, res)=>{
+userRouter.get('/', (req, res)=>{
     try {
         user.fetchUsers(req, res);
     } catch(e) {
         res.json({
-            status: res.statusCode,
-            msg: "An Error Occured"
+            status: 500,
+            msg: "Error while trying to fetch users"
         })
     }
 })
@@ -19,18 +19,18 @@ userRouter.get('/:id', (req, res)=>{
         user.fetchUser(req, res);
     } catch(e) {
         res.json({
-            status: res.statusCode,
-            msg: "An Error Occured"
+            status: 500,
+            msg: "Error while trying to fetch user"
         })
     }
 })
-userRouter.post('/register', bodyParser.json(), (req, res)=>{
+userRouter.post('/signup', bodyParser.json(), (req, res)=>{
     try {
-        user.createUser(req, res);
+        user.signup(req, res);
     } catch(e) {
         res.json({
-            status: res.statusCode,
-            msg: "An Error Occured"
+            status: 500,
+            msg: "Error while trying to signup"
         })
     }
 })
@@ -44,7 +44,7 @@ userRouter.patch('/updateuser', bodyParser.json(), (req, res)=>{
         })
     }
 })
-userRouter.delete('/deleteuser', (req, res)=>{
+userRouter.delete('/deleteuser/:id', (req, res)=>{
     try {
         user.deleteUser(req, res);
     } catch(e) {
@@ -54,9 +54,9 @@ userRouter.delete('/deleteuser', (req, res)=>{
         })
     }
 })
-userRouter.post('/login', bodyParser.json(), (req, res)=>{
+userRouter.post('/login', bodyParser.json(), (req, res, next)=>{
     try {
-        user.login(req, res);
+        user.login(req, res, next);
     } catch(e) {
         res.json({
             status: res.statusCode,
