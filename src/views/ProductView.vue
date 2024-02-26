@@ -1,7 +1,9 @@
 <template>
-    <div>
-<h2>Product</h2>
-    </div>
+   <div class="container">
+<div class="row">
+  <h2 class="display-2">Product</h2>
+</div>
+</div>
 </template>
 
 <script>
