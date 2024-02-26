@@ -5,6 +5,7 @@ import cors from 'cors';
 import { productRouter } from './controller/ProductController.js';
 import { contactRouter } from './controller/ContactController.js';
 import { userRouter } from './controller/UserController.js';
+import { errorHandling, handleBadRequests } from './middleware/ErrorHandling.js';
 
 config();
 
@@ -38,5 +39,8 @@ app.get('/', (req, res)=>{
 app.use('/product', productRouter); // has to connect to database
 app.use('/user', userRouter); // has the ability to add and remove products from database
 app.use('/contact', contactRouter); // this should send a message to us if person fills in the form
+
+app.use('*', errorHandling);
+app.use('*', handleBadRequests);
 
 app.listen(PORT, ()=>{console.log(`Server running on: http://localhost:${PORT}`)});

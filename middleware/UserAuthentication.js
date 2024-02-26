@@ -18,7 +18,23 @@ function createToken(user){
 }
 
 function verifyAToken(token){
-    console.log(token)
+    // const token = req.headers['authorization'] // what is the correct way to set a auth token
+
+    if( token ){
+        if( verify(token, process.env.SECRET_KEY) ) {
+            return true;
+        } else {
+            return({
+                status: res.statusCode,
+                msg: "Please provide credentials"
+            });
+        }
+    } else {
+        return({
+            status: res.statusCode,
+            msg: "Please login."
+        })
+    }
 }
 
 export {
