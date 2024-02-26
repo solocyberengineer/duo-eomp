@@ -6,7 +6,6 @@ class User {
     fetchUser(req, res){
         let userID = +req.params.id;
 
-        let endpoint = req.path.split('/').at(-1);
         if( isNaN(userID) ){
             res.json({
                 status: 500,
@@ -44,7 +43,7 @@ class User {
             res.status(401).send({
                 status: 401,
                 msg: "Invalid email or password"
-            })
+            });
             return;
         };
 
