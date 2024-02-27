@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg justify-end">
+    <nav class="navbar navbar-expand-lg justify-end sticky-top">
   <div class="container-fluid">
     <img src="https://i.ibb.co/6g2TwNM/Screenshot-2024-02-26-161040.png" class="navbar-brand" href="#">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,9 +15,6 @@
         </li>
         <li class="nav-item">
           <router-link to="/products" class="nav-link" href="#">Products</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/product" class="nav-link" href="#">Product</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/admin" class="nav-link" href="#">Admin</router-link>
