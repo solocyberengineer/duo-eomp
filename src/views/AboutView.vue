@@ -18,7 +18,7 @@
 </template>
 <style scoped>
 .about{
-  font-weight: 300;
-  font-size: larger;
+  font-weight: 150;
+  font-size: large;
 }
 </style>
