@@ -19,7 +19,6 @@ path.addEventListener('change', (e)=>{
     let example;
     URL = `${window.location.origin}${path.value}${(param.value) ? param.value : ''}`;
 
-    console.log( path.value )
     switch( path.value ){
         case '/user/register':
             example = {
@@ -81,7 +80,6 @@ path.addEventListener('change', (e)=>{
 })
 method.addEventListener('change', (e)=>{
     METHOD = method.value;
-    console.log(METHOD)
 })
 param.addEventListener('input', ()=>{
     URL = `${window.location.origin}${path.value}${(param.value) ? param.value : ''}`;

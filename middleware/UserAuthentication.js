@@ -6,7 +6,6 @@ config();
 const { sign, verify } = jwt;
 
 function createToken(user){
-    console.log( user )
     return sign({
         emailAdd: user.emailAdd,
         userPass: user.userPass
@@ -25,13 +24,13 @@ function verifyAToken(token){
             return true;
         } else {
             return({
-                status: res.statusCode,
+                status: 403,
                 msg: "Please provide credentials"
             });
         }
     } else {
         return({
-            status: res.statusCode,
+            status: 302,
             msg: "Please login."
         })
     }
