@@ -1,4 +1,5 @@
 import { connection as db } from '../config/index.js';
+import { handleConnectionError } from '../middleware/ErrorHandling.js';
 
 class Product {
     fetchProduct(req, res){
@@ -13,9 +14,11 @@ class Product {
             })
             return;
         }
-
         db.query(qry, (err, result)=>{
-            if(err) throw err;
+            if(err){
+                handleConnectionError(err, req, res);
+                return;
+            };
             res.json({
                 status: res.statusCode,
                 result
@@ -26,7 +29,10 @@ class Product {
         const qry = `SELECT * FROM Products;`;
 
         db.query(qry, (err, result)=>{
-            if(err) throw err;
+            if(err){
+                handleConnectionError(err, req, res);
+                return;
+            };
             res.json({
                 status: res.statusCode,
                 result
@@ -40,13 +46,8 @@ class Product {
 
         db.query(qry, [data], (err)=>{
             if(err){
-                if( err.errno == 1062 ){
-                    res.status(403).send({
-                        status: 403,
-                        msg: "Product already exists"
-                    })
-                    return;
-                }
+                handleConnectionError(err, req, res);
+                return;
             };
             res.json({
                 status: res.statusCode,
@@ -68,7 +69,10 @@ class Product {
         const qry = `DELETE FROM Products WHERE prodID = ${prodID};`;
 
         db.query(qry, (err, result)=>{
-            if(err) throw err
+            if(err){
+                handleConnectionError(err, req, res);
+                return;
+            }
             if(result.affectedRows > 0) {
                 res.json({
                     status: res.statusCode,
@@ -96,7 +100,10 @@ class Product {
         const qry = `UPDATE Products SET ? WHERE prodID = ${data.prodID};`;
 
         db.query(qry, [data], (err)=>{
-            if(err) throw err;
+            if(err){
+                handleConnectionError(err, req, res);
+                return;
+            }
             res.json({
                 status: res.statusCode,
                 msg: "Product updated"

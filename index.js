@@ -2,10 +2,10 @@ import express from 'express';
 import { config } from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { errorHandling, handleBadRequests } from './middleware/ErrorHandling.js';
 import { productRouter } from './controller/ProductController.js';
 import { contactRouter } from './controller/ContactController.js';
 import { userRouter } from './controller/UserController.js';
-import { errorHandling, handleBadRequests } from './middleware/ErrorHandling.js';
 
 config();
 
