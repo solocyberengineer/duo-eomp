@@ -11,7 +11,7 @@ productRouter.get('/', (req, res)=>{
         console.log(e);
         res.json({
             status: res.statusCode,
-            msg: "Error"
+            msg: "Error while trying to get all products"
         })
     }
 })
@@ -22,7 +22,7 @@ productRouter.get('/:id', (req, res)=>{
         console.log(e);
         res.json({
             status: res.statusCode,
-            msg: "Error"
+            msg: "Error while trying to get product by id"
         })
     }
 })
@@ -33,7 +33,7 @@ productRouter.post('/newProduct', (req, res)=>{
         console.log(e);
         res.json({
             status: res.statusCode,
-            msg: "Error"
+            msg: "Error while trying to add a new product"
         })
     }
 })
@@ -44,18 +44,18 @@ productRouter.patch('/editProduct', bodyParser.json(), (req, res)=>{
         console.log(e);
         res.json({
             status: res.statusCode,
-            msg: "Error"
+            msg: "Error while trying to edit product"
         })
     }
 })
-productRouter.delete('/delProduct', (req, res)=>{
+productRouter.delete('/delProduct/:id', (req, res)=>{
     try {
-        product.delProduct(req, res);
+        product.deleteProduct(req, res);
     } catch(e) {
         console.log(e);
         res.json({
             status: res.statusCode,
-            msg: "Error"
+            msg: "Error while trying to delete product"
         })
     }
 })
