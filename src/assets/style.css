@@ -30,10 +30,14 @@
   
   nav a.router-link-exact-active {
     color: #f7e11e;
+    text-decoration: underline #f7e11e;
   }
   /* body */
 body{
     background-color: #d2eb42;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 100px;
+ 
 }
   /* footer */
   .feet{
@@ -53,12 +57,7 @@ body{
     height: 100px;
   }
   /* about */
-  .about{
-    font-size: 50px;
-    font-family: "Kdam Thmor Pro", sans-serif;
-    font-weight: 250;
-    font-style: normal
-  }
+ 
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Kdam+Thmor+Pro&family=Kode+Mono:wght@400..700&family=Roboto+Slab&family=Roboto:wght@100&family=Varela+Round&display=swap')
 
  

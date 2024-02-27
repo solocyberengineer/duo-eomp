@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div class="container vh-100">
 <div class="row">
   <h2 class="display-2">Admin</h2>
 </div>

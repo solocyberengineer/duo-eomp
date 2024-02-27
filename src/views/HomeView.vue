@@ -1,5 +1,5 @@
 <template>
-<div class="home container">
+<div class="home container vh-100">
 <div class="row">
   <h2 class="display-2">Home</h2>
 </div>
