@@ -34,7 +34,7 @@ export default createStore({
   
     async register(context, payload) {
       try{
-        let {msg} = (await fetch(`${liveUrl}users/register`, payload)).data
+        let {msg} = (await fetch(`${liveUrl}users/signup`, payload)).data
         if(msg) {
           context.dispatch('fetchUsers')
           sweet({
@@ -57,7 +57,7 @@ export default createStore({
     },
     async fetchUsers(context) {
       try{
-        let {result} = (await fetch(`${liveUrl}users`)).data
+        let {result} = (await fetch(`${liveUrl}user/`)).data
         if(result) {
           context.commit('setUsers', result)
         }
@@ -72,7 +72,7 @@ export default createStore({
     },
     async fetchUser(context, payload) {
       try{
-        let {result} = (await fetch(`${liveUrl}users/${payload.id}`)).data
+        let {result} = (await fetch(`${liveUrl}user/${payload.id}`)).data
         if(result) {
           context.commit('setUser', result)
         }else {
@@ -94,7 +94,7 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try{
-        let {msg} = await fetch.patch(`${liveUrl}users/update/${payload.id}`)
+        let {msg} = await fetch.patch(`${liveUrl}user/updateuser/${payload.id}`)
         if(msg) {
           context.dispatch('fetchUsers')
           sweet({
@@ -115,7 +115,7 @@ export default createStore({
     },
     async deleteUser(context, payload) {
       try{
-        let {msg} = await fetch.delete(`${liveUrl}users/${payload.id}`)
+        let {msg} = await fetch.delete(`${liveUrl}user/deleteuser/${payload.id}`)
         if(msg) {
           context.dispatch('fetchUsers')
           sweet({
@@ -136,7 +136,7 @@ export default createStore({
     },
     async login(context, payload) {
       try{
-       const {msg, token, result} = (await fetch.post(`${liveUrl}users/login`, payload)).data 
+       const {msg, token, result} = (await fetch.post(`${liveUrl}user/login`, payload)).data 
        if(result){
         context.commit('setUser', {msg, result})
         cookies.set('LegitUser', {
@@ -172,9 +172,11 @@ export default createStore({
     },
     async fetchProducts(context) {
       try{
-        let {result} = (await fetch(`${liveUrl}products`)).data
+        let {result} = (await fetch(`${liveUrl}product`)).data
+        console.log(result);
         if(result) {
           context.commit('setProducts', result)
+       
         }
       }catch(e) {
         sweet({
@@ -187,7 +189,7 @@ export default createStore({
     },
     async fetchProduct(context, payload) {
       try{
-        let {result} = (await fetch(`${liveUrl}products/${payload.id}`)).data
+        let {result} = (await fetch(`${liveUrl}product/${payload.id}`)).data
         if(result) {
           context.commit('setProduct', result)
         }else {
@@ -207,7 +209,7 @@ export default createStore({
         }) 
       }
     },
-
+// Im must still create update and delete product
 // In your src folder please create a folder called service which will have a file named AuthenticateUser.js
 
 
