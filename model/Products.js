@@ -55,16 +55,31 @@ class Product {
         })
     }
     deleteProduct(req, res){
-        let id = req.params.id;
+        let prodID = +req.params.id;
 
-        const qry = `DELETE FROM Products WHERE prodID = ${id};`;
-
-        db.query(qry, (err)=>{
-            if(err) throw err
+        if( isNaN(prodID) ){
             res.json({
-                status: res.statusCode,
-                msg: "Product removed"
+                status: 500,
+                msg: `Internal Server Error, Either your using the wrong method or product id is incorrect.`
             })
+            return;
+        }
+
+        const qry = `DELETE FROM Products WHERE prodID = ${prodID};`;
+
+        db.query(qry, (err, result)=>{
+            if(err) throw err
+            if(result.affectedRows > 0) {
+                res.json({
+                    status: res.statusCode,
+                    msg: "Product removed"
+                })
+            } else {
+                res.status(404).json({
+                    status: 404,
+                    msg: "Product does not exist"
+                })
+            }
         })
     }
     editProduct(req, res){

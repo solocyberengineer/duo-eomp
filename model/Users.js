@@ -9,7 +9,7 @@ class User {
         if( isNaN(userID) ){
             res.json({
                 status: 500,
-                msg: `Internal Server Error, perhaps you using the wrong method.`
+                msg: `Internal Server Error, Either your using the wrong method or userID is incorrect.`
             })
             return;
         }
@@ -73,13 +73,20 @@ class User {
             })
         })
     }
-    async deleteUser(req, res){
-        let data = req.body;
-        let userID = req.params.id;
+    deleteUser(req, res){
+        let userID = +req.params.id;
 
-        const qry2 = `DELETE FROM Users WHERE userID = ${userID}`;
+        if( isNaN(userID) ){
+            res.json({
+                status: 500,
+                msg: `Internal Server Error, Either your using the wrong method or user id is incorrect.`
+            })
+            return;
+        }
 
-        db.query(qry2, (err, result)=>{
+        const qry = `DELETE FROM Users WHERE userID = ${userID}`;
+
+        db.query(qry, (err, result)=>{
             if(err) throw err;
             if(result.affectedRows > 0) {
                 res.json({

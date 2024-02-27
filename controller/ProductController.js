@@ -48,9 +48,9 @@ productRouter.patch('/editProduct', bodyParser.json(), (req, res)=>{
         })
     }
 })
-productRouter.delete('/delProduct', (req, res)=>{
+productRouter.delete('/delProduct/:id', (req, res)=>{
     try {
-        product.delProduct(req, res);
+        product.deleteProduct(req, res);
     } catch(e) {
         console.log(e);
         res.json({
