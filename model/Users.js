@@ -1,6 +1,7 @@
 import { connection as db } from '../config/index.js';
 import { hash, hashSync, compare } from "bcrypt";
 import { createToken, verifyAToken } from '../middleware/UserAuthentication.js';
+import { handleConnectionError, handleTokenError } from '../middleware/ErrorHandling.js';
 
 class User {
     fetchUser(req, res){
@@ -17,7 +18,10 @@ class User {
         const qry = `SELECT userID, firstName, lastName, userAge, Gender, userRole, emailAdd, userProfile FROM Users WHERE userID = ${userID};`;
 
         db.query( qry, (err, result)=>{
-            if(err) throw err;
+            if(err){
+                handleConnectionError(err, req, res);
+                return;
+            };
             res.json({
                 status: res.statusCode,
                 result
@@ -27,11 +31,14 @@ class User {
     fetchUsers(req, res){
         const qry = `SELECT userID, firstName, lastName, userAge, Gender, userRole, emailAdd, userProfile FROM Users;`;
 
-        db.query(qry, (err, results)=>{
-            if(err) throw err;
+        db.query(qry, (err, result)=>{
+            if(err){
+                handleConnectionError(err, req, res);
+                return;
+            }
             res.json({
                 status: res.statusCode,
-                results
+                result
             })
         })
     }
@@ -58,13 +65,8 @@ class User {
         
         db.query(qry, [data], (err)=>{
             if(err){
-                if(err.errno == 1062){
-                    res.status(403).send({
-                        status: 403,
-                        msg: "Account already exists"
-                    })
-                    return;
-                }
+                handleConnectionError(err, req, res);
+                return;
             };
             res.json({
                 status: res.statusCode,
@@ -87,7 +89,10 @@ class User {
         const qry = `DELETE FROM Users WHERE userID = ${userID}`;
 
         db.query(qry, (err, result)=>{
-            if(err) throw err;
+            if(err) {
+                handleConnectionError(err, req, res);
+                return;
+            }
             if(result.affectedRows > 0) {
                 res.json({
                     status: res.statusCode,
@@ -116,7 +121,10 @@ class User {
         // this.fetchUser(req, res)
 
         db.query(qry, [data], (err, result)=>{
-            if(err) throw err;
+            if(err){
+                handleConnectionError(err, req, res);
+                return;
+            }
             res.json({
                 status: res.statusCode,
                 msg: "Account updated"
@@ -135,17 +143,15 @@ class User {
         }
 
         let authToken = req.headers['authorization'];
-        console.log(authToken)
-
-        console.log("Auth: ", authToken);
 
         const qry = `SELECT * FROM Users WHERE emailAdd = "${data.emailAdd}";`;
 
         if( !authToken ){
             db.query(qry, async (err, result)=>{
                 if(err){
-                    throw err;
-                };
+                    handleConnectionError(err, req, res);
+                    return;
+                }
                 if( result.length <= 0 ){
                     res.json({
                         status: 401,
@@ -172,17 +178,22 @@ class User {
                     return;
                 }
             })
-        } else {
-            console.log('Token Detected!');
-            let vaild = verifyAToken(authToken.split(' ').at(-1));
-            if( vaild ){
-                res.json({
-                    status: res.statusCode,
-                    msg: `Welcome user`
-                })
-            } else {
-                res.json(valid)
+        } else { 
+            try {
+                let valid = verifyAToken(authToken.split(' ').at(-1));
+                if( valid ){
+                    res.json({
+                        status: res.statusCode,
+                        msg: `Welcome user`
+                    })
+                } else {
+                    res.json(valid)
+                }
+            } catch (e) {
+                handleTokenError(e, req, res);
+                return;
             }
+            
             
         }
     }
