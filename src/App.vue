@@ -1,25 +1,22 @@
 <template>
   <div>
-    <NavBar/>
-<main class="container-fluid">
-
-  <router-view/>
-</main>
-<Footer/>
+    <NavBar />
+    <main class="container-fluid p-0">
+      <router-view />
+    </main>
+    <!-- <Footer /> -->
   </div>
-
 </template>
 <script>
 import NavBar from './components/NavBar.vue';
-import Footer from './components/Footer.vue';
-export default{
-  components:{
+// import Footer from './components/Footer.vue';
+
+export default {
+  components: {
     NavBar,
-    Footer
+    // Footer
   }
 }
 </script>
 
-<style src="./assets/style.css">
-
-</style>
+<style src="./assets/style.css"></style>

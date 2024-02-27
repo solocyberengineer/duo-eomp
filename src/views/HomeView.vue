@@ -1,65 +1,99 @@
 <template>
-<div class="home container vh-100">
-<div class="row">
-  <h2 class="display-2">Home</h2>
-</div>
-<div class="catogaries">
- <h4>Welcome to </h4>
-  <div class="p-5">
-  <h6 id="logotext">Heaven's Delights</h6></div>
-  
-  <h5>For all your sweet and savoury catering with refreshments included like:</h5>
-  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
-      <img src="https://i.ibb.co/8nkPTqT/images.jpg" class="carisol d-block w-25" alt="sweet treats">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Sweet Treats</h5>
+    <div class="home bg-secondary">
+        <div id="homeCarousel" class="carousel slide carousel-fade bg-dark h-100" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-current="true"
+                    aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner h-100">
+                <div class="home carousel-item active h-100">
+                    <div class="row g-0 h-100">
+                        <div class="col-3"></div>
+                        <div class="col-6 h-100 d-flex flex-column justify-content-evenly mx-auto">
+                            <h4 class="title display-4 fw-bold">Heaven Delights</h4>
+                            <h5 class="display-5 fs-1 fw-bold text-white text-start">Catering</h5>
+                            <p class="fs-7 text-white fw-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Adipisci enim nostrum aut quae sit aperiam aliquid ducimus fugit, unde ab ipsum facilis id
+                                sed recusandae in commodi quibusdam doloremque sint.</p>
+                        </div>
+                        <div class="col-3 d-flex align-items-end justify-content-end">
+                            <button class="btn my-5 home-carousel-btn d-flex align-items-center justify-content-center shadow"><span>Go
+                                    to</span><i class="bi bi-arrow-right-circle m-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="home carousel-item h-100"
+                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://i.ibb.co/3Mj0rZd/rachel-park-hrlvr2-Zl-UNk-unsplash.jpg)">
+                    <div class="row g-0 h-100">
+                        <div class="col-3"></div>
+                        <div class="col-6 h-100 d-flex flex-column justify-content-evenly mx-auto">
+                            <h4 class="title display-4 fw-bold">Heaven Delights</h4>
+                            <h5 class="display-5 fs-1 fw-bold text-white text-start">Catering</h5>
+                            <p class="fs-7 text-white fw-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Adipisci enim nostrum aut quae sit aperiam aliquid ducimus fugit, unde ab ipsum facilis id
+                                sed recusandae in commodi quibusdam doloremque sint.</p>
+                        </div>
+                        <div class="col-3 d-flex align-items-end justify-content-end">
+                            <button class="btn my-5 home-carousel-btn d-flex align-items-center justify-content-center shadow"><span>Go
+                                    to</span><i class="bi bi-arrow-right-circle m-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      </div>
+        <!-- <div class="row g-0 h-100">
+            <div class="col-3"></div>
+            <div class="col-6 h-100 d-flex flex-column justify-content-evenly mx-auto">
+                <h4 class="title display-4 fw-bold">Heaven Delights</h4>
+                <h5 class="display-5 fs-1 fw-bold text-white text-start">Catering</h5>
+                <p class="fs-7 text-white fw-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci enim nostrum aut quae sit aperiam aliquid ducimus fugit, unde ab ipsum facilis id sed recusandae in commodi quibusdam doloremque sint.</p>
+                <div>asd</div>
+            </div>
+            <div class="col-3 d-flex align-items-end justify-content-end">
+                <button class="btn my-5 home-carousel-btn d-flex align-items-center justify-content-center shadow"><span>Go to</span><i class="bi bi-arrow-right-circle m-1"></i></button>
+            </div>
+        </div> -->
     </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="https://i.ibb.co/JzsK0vd/download.jpg" class="carisol d-block w-25" alt="savouries">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Savouries</h5>
-       
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="https://i.ibb.co/ZWvKWL3/download-1.jpg" class="carisol d-block w-25" alt="refreshments">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Refreshments</h5>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-</div>
-</div>
 </template>
 
 <script>
+
 // @ is an alias to /src
 
-
 export default {
-  name: 'HomeView',
-  components: {
-  
-  }
+    name: 'HomeView',
+    components: {
+
+    }
 }
 </script>
 
-<style>
-.home {
-  background-color: yellow;
+<style scoped>
+.title {
+    font-family: "Arial";
+    -webkit-text-stroke: 1px white;
+    color: transparent;
 }
 
-</style>
+.home {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://i.ibb.co/2kVNR61/dan-gold-4-jh-DO54-BYg-unsplash.jpg);
+    background-position: center;
+    height: 90vh;
+    backdrop-filter: blur(2px);
+}
+
+.home-carousel-btn {
+    background-color: var(--primary);
+    color: white;
+    width: 40%;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    &:hover {
+        color: white;
+        backdrop-filter: blur(8px);
+    }
+}</style>
