@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
+    <div class="container vh-100">
 <div class="row">
-  <h2 class="display-2">About</h2>
+  <h2 class="display-2">Contact us</h2>
 </div>
 </div>
 </template>

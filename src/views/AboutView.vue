@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container vh-100">
 <div class="row">
   <h2 class="display-2">About</h2>
 </div>
@@ -16,3 +16,9 @@
 </div>
 
 </template>
+<style scoped>
+.about{
+  font-weight: 300;
+  font-size: larger;
+}
+</style>
