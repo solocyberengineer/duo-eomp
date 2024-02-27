@@ -48,4 +48,17 @@ body{
     margin: 10px;
     transform: rotate(45deg);
   }
+  .navbar-brand{
+    width:  100px;
+    height: 100px;
+  }
+  /* about */
+  .about{
+    font-size: 50px;
+    font-family: "Kdam Thmor Pro", sans-serif;
+    font-weight: 250;
+    font-style: normal
+  }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Kdam+Thmor+Pro&family=Kode+Mono:wght@400..700&family=Roboto+Slab&family=Roboto:wght@100&family=Varela+Round&display=swap')
+
  
