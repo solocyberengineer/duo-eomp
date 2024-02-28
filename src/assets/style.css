@@ -28,10 +28,7 @@
     color: #2c3e50;
   }
   
-  nav a.router-link-exact-active {
-    color: #f7e11e;
-    text-decoration: underline #f7e11e;
-  }
+
   /* body */
 body{
     background-color: #d2eb42;
@@ -53,8 +50,8 @@ body{
     transform: rotate(45deg);
   }
   .navbar-brand{
-    width:  100px;
-    height: 100px;
+    width:  70px;
+    height: 70px;
   }
   /* about */
  /* contact */

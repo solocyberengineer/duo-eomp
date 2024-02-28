@@ -1,40 +1,99 @@
 <template>
-    <nav class="navbar navbar-expand-lg justify-end sticky-top">
-  <div class="container-fluid">
-    <img src="https://i.ibb.co/6g2TwNM/Screenshot-2024-02-26-161040.png" class="navbar-brand" href="#">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <nav class="navbar navbar-expand-lg shadow bg-warning sticky-top h-auto">
+  <div class="container-fluid w-100 h-100">
+    <img src="https://i.ibb.co/6g2TwNM/Screenshot-2024-02-26-161040.png" class="navbar-brand img-fluid d-sm-flex" href="#">
+    <button class="btn btn-danger shadow d-lg-none d-sm-block" data-bs-toggle="offcanvas" data-bs-target="#sideNav"><i class="bi bi-list"></i></button>
+    <div class="collapse navbar-collapse ms-auto" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link active" aria-current="page" href="#">Home</router-link>
+        <li class="nav-item m-1">
+          <router-link to="/" class="nav-link active bg-danger shadow rounded-5" :class ="{'active': this.activePage()===0 }" aria-current="page" href="#">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link" href="#">About</router-link>
+          <router-link to="/about" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 1 }"  href="#">About</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/products" class="nav-link" href="#">Products</router-link>
+          <router-link to="/products" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 2 }"  href="#">Products</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/admin" class="nav-link" href="#">Admin</router-link>
+          <router-link to="/admin" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 3 }"  href="#">Admin</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/contact" class="nav-link" href="#">Contact us</router-link>
+          <router-link to="/contact" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 4 }"  href="#">Contact us</router-link>
         </li>
     
       </ul>
+
     </div>
+            <div class="offcanvas offcanvas-end bg-danger" tabindex="" id="sideNav" aria-labelledby="sideNavLabel">
+                <div class="offcanvas-header d-flex justify-content-between">
+                  <h5 class="offcanvas-title fw-bolder text-white fs-4 d-lg-none d-sm-" id="sideNavLabel">Heaven Delights</h5>
+                    <button type="button" class="btn btn-danger shadow d-lg-none d-sm-block" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x-circle"></i></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav d-lg-none d-sm-block">
+                        <li class="nav-item m-1">
+                            <router-link to="/" class="btn btn-danger shadow w-100 rounded-5"
+                                :class="{ 'active': this.activePage() === 0 }" href="#">Home</router-link>
+                        </li>
+                        <li class="nav-item m-1">
+                            <router-link to="/products" class="btn btn-danger shadow w-100 rounded-5"
+                                :class="{ 'active': this.activePage() === 1 }" href="#">About</router-link>
+                        </li>
+                        <li class="nav-item m-1">
+                            <router-link to="/about" class="btn btn-danger shadow w-100 rounded-5"
+                                :class="{ 'active': this.activePage() === 2 }" href="#">Products</router-link>
+                        </li>
+                        <li class="nav-item m-1">
+                            <router-link to="/admin" class="btn btn-danger shadow w-100 rounded-5"
+                                :class="{ 'active': this.activePage() === 3 }" href="#">Admin</router-link>
+                        </li>
+                        <li class="nav-item m-1">
+                            <router-link to="/contact" class="btn btn-danger shadow w-100 rounded-5"
+                                :class="{ 'active': this.activePage() === 4 }" href="#">Contact Us</router-link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
   </div>
 </nav>
 </template>
-
 <script>
-    export default {
-        
-    }
+export default {
+  data() {
+      return {
+          paths: {
+              '/': 0,
+              '/products': 1,
+              '/about': 2,
+              '/admin': 3,
+              'contact': 4
+          },
+          currentPath: null
+      }
+  },
+  mounted() {
+  },
+  methods: {
+      activePage() {
+          console.log(this.paths[this.$route.path]);
+          return this.paths[this.$route.path];
+      }
+  }}
+
 </script>
 
+
+<style scoped>
+.navbar {
+  height: 10vh;
+  background-color: transparent;
+}
+
+.logo {
+  -webkit-text-stroke: 2px white;
+  color: transparent;
+}</style>
 <style lang="scss" scoped>
 
 </style>
