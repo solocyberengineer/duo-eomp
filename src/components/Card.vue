@@ -1,5 +1,5 @@
 <template>
-    <div class="Card">
+    <div class="Card d-inline g-4" >
         <div class="card-header">
             <slot name="cardHeader">
 
@@ -9,12 +9,15 @@
 <div class="card-body">
     <slot name="cardBody"></slot>
 </div>
+<div class="card-footer">
+    <slot name="cardFooter"></slot>
+</div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'CardView'
+        name: 'CardComp'
     }
 </script>
 

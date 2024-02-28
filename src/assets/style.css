@@ -38,10 +38,10 @@
     color: #2c3e50;
   }
   
-  nav a.router-link-exact-active {
+  /* nav a.router-link-exact-active {
     color: #f7e11e;
     text-decoration: underline #f7e11e;
-  }
+  } */
   /* body */
 body{
     background-color: #d2eb42;

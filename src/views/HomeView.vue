@@ -42,12 +42,12 @@
                 </div>
             </div>
         </div>
-        <div class="banner bg-warning shadow d-flex align-items-center justify-content-center">
+        <!-- <div class="banner bg-warning shadow d-flex align-items-center justify-content-center">
             <h5 class="fw-bold text-white">What we Offer</h5>
-        </div>
-        <div class="bg-white">
+        </div> -->
+        <!-- <div class="bg-white">
             asd
-        </div>
+        </div> -->
     </div>
 </template>
 
