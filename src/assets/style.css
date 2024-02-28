@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Kdam+Thmor+Pro&family=Kode+Mono:wght@400..700&family=Roboto+Slab&family=Roboto:wght@100&family=Varela+Round&display=swap');
 
 *,
 ::before,
@@ -67,6 +68,5 @@ body{
   }
   /* about */
  
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Kdam+Thmor+Pro&family=Kode+Mono:wght@400..700&family=Roboto+Slab&family=Roboto:wght@100&family=Varela+Round&display=swap')
 
  
