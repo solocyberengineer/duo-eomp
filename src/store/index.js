@@ -173,7 +173,6 @@ export default createStore({
     async fetchProducts(context) {
       try{
         let {result} = (await fetch(`${liveUrl}product`)).data
-        console.log(result);
         if(result) {
           context.commit('setProducts', result)
        
@@ -190,8 +189,10 @@ export default createStore({
     async fetchProduct(context, payload) {
       try{
         let {result} = (await fetch(`${liveUrl}product/${payload.id}`)).data
+       
         if(result) {
           context.commit('setProduct', result)
+      
         }else {
           sweet({
             title: 'Retrieving a single product',
