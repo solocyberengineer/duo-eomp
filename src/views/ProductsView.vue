@@ -3,8 +3,9 @@
 <div class="row">
   <h2 class="display-2">Products</h2>
 </div>
-<div v-if="displayProduct">
-  <div v-for="prod in displayProduct" :key="prod.id">
+<!-- {{products}} -->
+<div v-if="products">
+  <div v-for="prod in products" :key="prod.id">
 
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -33,13 +34,14 @@
 <script>
     export default {
       computed: {
-        displayProduct(){
-          return this.$store.state.product
+        products(){
+          console.log(this.$store.state.products);
+          return this.$store.state.products;
         },
   
       },
       mounted(){
-        this.$store.dispatch("fetchProduct")
+        this.$store.dispatch("fetchProducts")
       }
 
     }

@@ -4,7 +4,8 @@ import {useCookies} from 'vue3-cookies'
 const cookies = useCookies()
 import AuthenticateUser from '../service/Authentication.js'
 import router from '@/router/index.js'
-const liveUrl = 'https://duo-eomp-gs-ro.onrender.com/'
+// const liveUrl = 'https://duo-eomp-gs-ro.onrender.com/'
+const liveUrl = 'http://localhost:8080/'
 export default createStore({
   state: {
     users: null,
@@ -172,9 +173,11 @@ export default createStore({
     },
     async fetchProducts(context) {
       try{
-        let {result} = (await fetch(`${liveUrl}product`)).data
-        if(result) {
-          context.commit('setProducts', result)
+        let result = (await fetch(`${liveUrl}product`))
+        let data = await result.json();
+        console.log(data.result);
+        if(data) {
+          context.commit('setProducts', data.result)
        
         }
       }catch(e) {
