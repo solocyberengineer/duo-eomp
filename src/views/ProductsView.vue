@@ -1,52 +1,56 @@
 <template>
-     <div class="container vh-100">
-<div class="row">
-  <h2 class="display-2">Products</h2>
-</div>
-<!-- {{products}} -->
-<div v-if="products">
-  <div v-for="prod in products" :key="prod.id">
-
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <div class="card h-100">
-        <img :src="prod.prodUrl" class="card-img-top" alt="image">
-        <div class="card-body">
-          <h4 class="card-title">{{ prod.category }}</h4>
-          <h5 >{{ prod.prodName }}</h5>
-          <p class="card-text">{{ prod.quantity }} </p>
-        </div>
-        <div class="card-footer">
-          <small class="text-body-secondary">{{ prod.amount }}</small>
-        </div>
-      </div>
+  <div class="container ">
+    <div class="row">
+      <h2 class="display-2">Products</h2>
     </div>
-    
-  
-  </div>
-  </div>
-</div>
+    <!-- {{products}} -->
+    <div v-if="products" class="bg-light col-6 col-md-4 ">
+      <Card v-for="prod in products" :key="prod.id">
+              <template #cardHeader>
+                <h4 class="card-title">{{ prod.category }}</h4>
+                <img :src="prod.prodUrl" class="img-fluid card-img-top" alt="image">
+                
+              </template>
+              <template #cardBody>
+                <div class="d-flex justify-content-center flex wrap ">
+                  <h5>{{ prod.prodName }}</h5>
 
-</div>
+                  <p class="card-text">{{ prod.quantity }} </p>
+                </div>
+              </template>
+              <template #cardFooter>
+
+                <small class="text-body-secondary">{{ prod.amount }}</small>
+              </template>
+            
+      
+
+  
+    </Card>
+  </div>
+
+  </div>
+  
 </template>
 
 <script>
-    export default {
-      computed: {
-        products(){
-          console.log(this.$store.state.products);
-          return this.$store.state.products;
-        },
-  
-      },
-      mounted(){
-        this.$store.dispatch("fetchProducts")
-      }
+import Card from '@/components/Card.vue';
+export default {
+  components: {
+    Card
+  },
+  computed: {
+    products() {
+      console.log(this.$store.state.products);
+      return this.$store.state.products;
+    },
 
-    }
+  },
+  mounted() {
+    this.$store.dispatch("fetchProducts")
+  }
+
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
