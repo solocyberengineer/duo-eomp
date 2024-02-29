@@ -3,7 +3,8 @@
 <div class="row">
   <h2 class="display-2">Admin</h2>
 </div>
-</div>
+
+   </div>
 </template>
 
 <script>
