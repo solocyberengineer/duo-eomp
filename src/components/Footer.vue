@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid feet">
+    <div class="container-fluid feet shadow bg-warning">
 <div class="row">
     <p class="lead">Heaven's Delight &copy;<span> {{ currYear }}</span> </p>
 
