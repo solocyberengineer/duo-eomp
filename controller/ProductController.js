@@ -34,7 +34,7 @@ productRouter.post('/newProduct', (req, res)=>{
         })
     }
 })
-productRouter.patch('/editProduct', bodyParser.json(), (req, res)=>{
+productRouter.patch('/editProduct/:id', bodyParser.json(), (req, res)=>{
     try {
         product.editProduct(req, res);
     } catch(e) {
@@ -44,9 +44,9 @@ productRouter.patch('/editProduct', bodyParser.json(), (req, res)=>{
         })
     }
 })
-productRouter.delete('/delProduct', (req, res)=>{
+productRouter.delete('/delProduct/:id', (req, res)=>{
     try {
-        product.delProduct(req, res);
+        product.deleteProduct(req, res);
     } catch(e) {
         res.json({
             status: res.statusCode,

@@ -8,10 +8,10 @@ class Product {
         const qry = `SELECT * FROM Products WHERE prodID = ${id};`;
 
         if( isNaN(id) ){
-            res.json({
-                status: 500,
-                msg: `Internal Server Error, perhaps you using the wrong method.`
-            })
+            res.status(403).send({
+                status: 403,
+                msg: "Please make sure you select a existing product"
+            });
             return;
         }
         db.query(qry, (err, result)=>{
@@ -59,10 +59,10 @@ class Product {
         let prodID = +req.params.id;
 
         if( isNaN(prodID) ){
-            res.json({
-                status: 500,
-                msg: `Internal Server Error, Either your using the wrong method or product id is incorrect.`
-            })
+            res.status(403).send({
+                status: 403,
+                msg: "Please make sure you select a existing product"
+            });
             return;
         }
 
@@ -89,7 +89,9 @@ class Product {
     editProduct(req, res){
         let data = req.body;
 
-        if( !data.prodID  ){
+        let prodID = +req.params.id;
+
+        if( isNaN(prodID) ){
             res.status(403).send({
                 status: 403,
                 msg: "Please make sure you select a existing product"
@@ -97,7 +99,7 @@ class Product {
             return;
         }
 
-        const qry = `UPDATE Products SET ? WHERE prodID = ${data.prodID};`;
+        const qry = `UPDATE Products SET ? WHERE prodID = ${prodID};`;
 
         db.query(qry, [data], (err)=>{
             if(err){
