@@ -36,11 +36,11 @@
                                 :class="{ 'active': this.activePage() === 0 }" href="#">Home</router-link>
                         </li>
                         <li class="nav-item m-1">
-                            <router-link to="/products" class="btn btn-danger shadow w-100 rounded-5"
+                            <router-link to="/about" class="btn btn-danger shadow w-100 rounded-5"
                                 :class="{ 'active': this.activePage() === 1 }" href="#">About</router-link>
                         </li>
                         <li class="nav-item m-1">
-                            <router-link to="/about" class="btn btn-danger shadow w-100 rounded-5"
+                            <router-link to="/products" class="btn btn-danger shadow w-100 rounded-5"
                                 :class="{ 'active': this.activePage() === 2 }" href="#">Products</router-link>
                         </li>
                         <li class="nav-item m-1">
@@ -64,8 +64,8 @@ export default {
       return {
           paths: {
               '/': 0,
-              '/products': 1,
-              '/about': 2,
+              '/about': 1,
+              '/products': 2,
               '/admin': 3,
               'contact': 4
           },
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
       activePage() {
-          console.log(this.paths[this.$route.path]);
+    
           return this.paths[this.$route.path];
       }
   }}

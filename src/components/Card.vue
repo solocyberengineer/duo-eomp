@@ -1,5 +1,5 @@
 <template>
-    <div class="Card d-inline g-4" >
+    <div class="Card " >
         <div class="card-header">
             <slot name="cardHeader">
 
