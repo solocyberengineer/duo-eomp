@@ -8,8 +8,8 @@ import {
 const cookies = useCookies()
 import AuthenticateUser from '../service/Authentication.js'
 import router from '@/router/index.js'
-// const liveUrl = 'https://duo-eomp-gs-ro.onrender.com'
-const liveUrl = 'http://192.168.11.149:8081'
+const liveUrl = 'https://duo-eomp-gs-ro.onrender.com'
+// const liveUrl = 'http://192.168.11.149:8081'
 
 export default createStore({
     state: {
@@ -197,22 +197,6 @@ export default createStore({
 
         },
         async fetchProducts(context) {
-            // try {
-            //   let {
-            //     result
-            //   } = (await fetch(`${liveUrl}product`))
-            //   console.log(result);
-            //   if (result) {
-            //     context.commit('setProducts', result)
-            //   }
-            // } catch (e) {
-            //   sweet({
-            //     title: 'Error',
-            //     text: 'An error occurred when retrieving products.',
-            //     icon: "error",
-            //     timer: 2000
-            //   })
-            // }
             try {
                 let result = await fetch(`${liveUrl}/product`);
                 let data = await result.json();
@@ -245,13 +229,44 @@ export default createStore({
                 })
             }
         },
-
-        // In your src folder please create a folder called service which will have a file named AuthenticateUser.js
-
-
-
-        // Include a route for displaying a single product. 
-
+        async addProduct(context, payload){
+            try {
+                let result = await fetch(`${liveUrl}/product/newProduct`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+                let data = await result.json();
+                console.log('ad', data);
+                context.dispatch('fetchProducts');
+            } catch(e) {
+                console.log(e)
+                sweet({
+                    title: 'Error',
+                    text: 'Failed to add a product',
+                    icon: 'error',
+                    timer: 2000
+                });
+            }
+        },
+        async editProduct(context, payload){
+            try {
+                let result = await fetch(`${liveUrl}/product/editProduct/${payload.prodID}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+                let data = await result.json();
+                console.log(data);
+                context.dispatch('fetchProducts');
+            } catch(e) {
+                sweet({})
+            }
+        }
     },
     modules: {}
 })

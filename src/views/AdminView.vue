@@ -8,12 +8,12 @@
         <div class="row g-0 my-4 d-flex align-items-center justify-content-center">
             <div class="col-10 d-flex align-items-center justify-content-center">
                 <button class="btn btn-danger fs-6 mx-1 text-white rounded-5 shadow" data-bs-target="#userTable"
-                    data-bs-toggle="modal">
+                    data-bs-toggle="modal" @click="setUserModal">
                     <i class="bi bi-plus-circle"></i>
                     Add User
                 </button>
                 <button class="btn btn-danger fs-6 mx-1 text-white rounded-5 shadow" data-bs-target="#productTable"
-                    data-bs-toggle="modal">
+                    data-bs-toggle="modal" @click="setProductModal">
                     <i class="bi bi-plus-circle"></i>
                     Add Product
                 </button>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="modal-footer border-0 px-5">
                         <button class="btn btn-secondary shadow">Reset</button>
-                        <button class="btn btn-warning shadow">Submit</button>
+                        <button @click="productModalSubmit" class="btn btn-warning shadow">Submit</button>
                     </div>
                 </div>
             </div>
@@ -194,21 +194,22 @@ export default {
     data() {
         return {
             productTable: {
+                prodID: 0,
                 category: "",
                 name: "",
                 quantity: "",
                 price: "",
                 image: ""
             },
-            userModalFunc: "Add",
-            productModalFunc: "Add",
-            modalStates: ['Add', 'Edit'],
             userTable: {
                 firstName: "",
                 lastName: "",
                 age: "",
                 profile: ""
-            }
+            },
+            userModalFunc: "Add",
+            productModalFunc: "Add",
+            modalStates: ['Add', 'Edit']
 
         }
     },
@@ -233,12 +234,57 @@ export default {
             this.productModalFunc = this.modalStates[1];
             let id = +event.target.getAttribute('value');
             let product = this.$store.state.products.find( (item) => item.prodID === id );
-            // console.log(product);
+
             this.productTable.category = product.category;
             this.productTable.name = product.prodName;
             this.productTable.quantity = product.quantity;
             this.productTable.price = product.amount;
             this.productTable.image = product.prodUrl;
+        },
+        setProductModal(){
+            this.productModalFunc = this.modalStates[0];
+            this.productTable = {
+                prodID: "",
+                category: "",
+                name: "",
+                quantity: "",
+                price: "",
+                image: ""
+            }
+        },
+        setUserModal(){
+            this.userModalFunc = this.modalStates[0];
+            this.userTable = {
+                firstName: "",
+                lastName: "",
+                age: "",
+                profile: ""
+            }
+        },
+        productModalSubmit(){
+            switch( this.productModalFunc ){
+                case "Add":
+                    this.$store.dispatch('addProduct', {
+                        category: this.productTable.category,
+                        prodName: this.productTable.name,
+                        quantity: this.productTable.quantity,
+                        amount: this.productTable.price,
+                        prodUrl: this.productTable.image
+                    });
+                    break;
+                case "Edit":
+                    this.$store.dispatch('editProduct', {
+                        prodID: this.productTable.prodID,
+                        category: this.productTable.category,
+                        prodName: this.productTable.name,
+                        quantity: this.productTable.quantity,
+                        amount: this.productTable.price,
+                        prodUrl: this.productTable.image
+                    });
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
