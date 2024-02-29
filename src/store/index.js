@@ -8,8 +8,8 @@ import {
 const cookies = useCookies()
 import AuthenticateUser from '../service/Authentication.js'
 import router from '@/router/index.js'
-const liveUrl = 'https://duo-eomp-gs-ro.onrender.com'
-// const liveUrl = 'http://192.168.11.149:5500/'
+// const liveUrl = 'https://duo-eomp-gs-ro.onrender.com'
+const liveUrl = 'http://192.168.11.149:8081'
 
 export default createStore({
     state: {
@@ -64,11 +64,11 @@ export default createStore({
         },
         async fetchUsers(context) {
             try {
-                let {
-                    result
-                } = (await fetch(`${liveUrl}users`)).data
-                if (result) {
-                    context.commit('setUsers', result)
+                let result = await fetch(`${liveUrl}/user`)
+                let data = await result.json();
+                // console.log(data)
+                if (data) {
+                    context.commit('setUsers', data.result)
                 }
             } catch (e) {
                 sweet({
@@ -215,7 +215,8 @@ export default createStore({
             // }
             try {
                 let result = await fetch(`${liveUrl}/product`);
-                context.commit("setProducts", await result.json());
+                let data = await result.json();
+                context.commit("setProducts", data.result);
             } catch(e) {
                 console.log(e)
             }
