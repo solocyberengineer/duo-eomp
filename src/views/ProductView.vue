@@ -1,16 +1,16 @@
 <template>
-    <div class="container-fluid h-100">
+    <div class="container ">
         <div class="row">
             <h2 class="display-2">Product</h2>
         </div>
-        <div v-if="product" class="bg-light d-flex" id="prodImg">
-            <Card :key="product.prodID" class="flex-wrap" >
+        <div v-if="product" class="bg-light " >
+            <Card :key="product.prodID" class="row" id="prodImg" >
                 
                 <template #cardHeader><div class="col"><h2>Category</h2><h3>{{ product.category }}</h3> </div>
-                    <img :src="product.prodUrl" class="img-fluid card-img-top"  alt="image"></template>
+                    <img :src="product.prodUrl" class="img-fluid card-img-top "   alt="image"></template>
                 <template #cardBody>
                     <div class=" col bg-danger"><h3>Price</h3><p>R {{ product.amount }}</p> </div></template>
-                <template #cardFooter><div class="bg-light col">{{ product.quantity }}</div></template>
+                <template #cardFooter><div class="bg-light ">{{ product.quantity }}</div></template>
             </Card>
         </div>
 

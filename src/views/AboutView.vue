@@ -3,11 +3,11 @@
 <div class="row">
   <h2 class="display-2">About</h2>
 </div>
-<div>
+<div class="bg-dark rounded-5 slide-in shadow p-1">
   <p>
 
 
-    <span class="about">We are a local capetonian  catering company delivering our products since 1/1/2024.
+    <span class="about text-white">We are a local capetonian  catering company delivering our products since 1/1/2024.
   It was started by Rezaar Osman and Ghamzah Samuels.We saw a need  to provide 
   for different local events with adequate prices. Starting out we provided services to
   our family and friends and since then our clientele has grown tremendously </span>
@@ -26,7 +26,7 @@
 }
 
 .anime{
-  font-size: 150px;
+  font-size: 140px;
  
 }
 .animation{
@@ -41,6 +41,20 @@
   to{
     transform: translateY(0);
     opacity: 1;
+  }
+}
+.slide-in{
+  animation: slideIn 4s forwards;
+  opacity: 0
+}
+@keyframes slideIn{
+  from {
+    transform: rotateX(-180deg);
+    opacity: 0
+  }
+  to{
+    transform: rotateX(0);
+    opacity: 1
   }
 }
 </style>

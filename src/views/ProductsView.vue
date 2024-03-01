@@ -32,7 +32,7 @@
       </Card>
   </div> -->
 <!-- </div> -->
-    <div v-if="products" class="bg-light d-flex row col">
+    <div v-if="products" class="bg-light d-flex flex-wrap row-cols-md-4 mx-2 g-4">
       <Card v-for="prod in products" :key="prod.id">
         <template #cardHeader>
           <h4 class="card-title">{{ prod.category }}</h4>
