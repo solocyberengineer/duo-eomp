@@ -22,7 +22,7 @@
                     <textarea name="message" id="message" placeholder="Please enter your message"  rows="7" required ></textarea>
                   </div>
                 <div class="forming col-12">
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
 </div>
