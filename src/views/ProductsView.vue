@@ -4,9 +4,9 @@
       <h2 class="display-2">Products</h2>
     </div>
 <div id="searchP">
-  <input type="text" v-model="searchItem" placeholder="Search a product" required class="form-control me-1" :onKeyup="searchProduct">
-  <button>Sort</button>
-  <button>Filter</button>
+  <input type="text" v-model="searchItem" placeholder="Search a product" required class="form-control m-1" :onKeyup="searchProduct">
+  <button class=" btn btn-danger p-2 g-2 mx-2">Sort</button>
+  <button class=" btn btn-danger p-2 g-2">Filter</button>
 </div>
 <!-- <div v-if="filterProducts.length === 0">
 <p>No product found</p>
