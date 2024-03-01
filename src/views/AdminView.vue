@@ -144,7 +144,7 @@
                         <td class="d-flex">
                             <button class="btn btn-secondary m-1" data-bs-target="#productTable" data-bs-toggle="modal"
                                 @click="edit" :value="product.prodID">Edit</button>
-                            <button class="btn btn-danger m-1">Delete</button>
+                            <button class="btn btn-danger m-1" @click="deleteBtn" :value="product.prodID">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -232,14 +232,17 @@ export default {
         edit(event) {
             this.userModalFunc = this.modalStates[1];
             this.productModalFunc = this.modalStates[1];
-            let id = +event.target.getAttribute('value');
-            let product = this.$store.state.products.find( (item) => item.prodID === id );
+            this.productTable.prodID = +event.target.getAttribute('value');
+            let product = this.$store.state.products.find( (item) => item.prodID === this.productTable.prodID );
 
             this.productTable.category = product.category;
             this.productTable.name = product.prodName;
             this.productTable.quantity = product.quantity;
             this.productTable.price = product.amount;
             this.productTable.image = product.prodUrl;
+        },
+        deleteBtn(event){
+            this.productTable.prodID = +event.target.getAttribute('value');
         },
         setProductModal(){
             this.productModalFunc = this.modalStates[0];
