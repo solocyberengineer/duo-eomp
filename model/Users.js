@@ -33,6 +33,7 @@ class User {
 
         db.query(qry, (err, result)=>{
             if(err){
+                console.log(err)
                 handleConnectionError(err, req, res);
                 return;
             }
@@ -108,20 +109,22 @@ class User {
     }
     updateUser(req, res){
         let data = req.body;
+        let userID = req.params.id;
 
-        if( !data.userID || !data.userPass  ){
+        if( !userID  ){
             res.status(401).send({
                 status: 401,
-                msg: "Please make sure your user password is correct"
+                msg: "Please make sure you select a vaild user"
             });
             return;
         }
 
-        const qry = `UPDATE Users SET ? WHERE userID = ${data.userID}`;
+        const qry = `UPDATE Users SET ? WHERE userID = ${userID}`;
         // this.fetchUser(req, res)
 
         db.query(qry, [data], (err, result)=>{
             if(err){
+                console.log(err);
                 handleConnectionError(err, req, res);
                 return;
             }
