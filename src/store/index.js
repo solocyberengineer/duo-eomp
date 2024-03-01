@@ -94,7 +94,7 @@ export default createStore({
           try {
               let {
                   result
-              } = (await fetch(`${liveUrl}users/${payload.id}`)).data
+              } = (await fetch(`${liveUrl}/users/${payload.id}`)).data
               if (result) {
                   context.commit('setUser', result)
               } else {
@@ -172,7 +172,7 @@ export default createStore({
                   msg,
                   token,
                   result
-              } = (await fetch.post(`${liveUrl}users/login`, payload)).data
+              } = (await fetch.post(`${liveUrl}/users/login`, payload)).data
               if (result) {
                   context.commit('setUser', {
                       msg,
@@ -226,7 +226,7 @@ export default createStore({
           try {
               let {
                   result
-              } = (await fetch(`${liveUrl}products/${payload.id}`)).data
+              } = (await fetch(`${liveUrl}/products/${payload.id}`)).data
               if (result) {
                   context.commit('setProduct', result)
               } else {
@@ -313,6 +313,9 @@ export default createStore({
                   timer: 2000
               })
           }
+      },
+      setProducts(context, payload){
+        context.commit('setProducts', payload)
       }
   },
   modules: {}
