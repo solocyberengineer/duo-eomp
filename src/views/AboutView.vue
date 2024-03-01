@@ -57,4 +57,9 @@
     opacity: 1
   }
 }
+@media (300px<= width<=900px){
+   .anime{
+    font-size: 100px
+   } 
+}
 </style>

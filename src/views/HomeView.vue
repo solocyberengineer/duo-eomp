@@ -13,21 +13,21 @@
   <div class="carousel-inner align-content-center">
     <div class="carousel-item active " data-bs-interval="10000">
       <img src="https://i.ibb.co/8nkPTqT/images.jpg" class="carisol d-block w-25 mx-auto mb-5" alt="sweet treats">
-      <div class="carousel-caption d-none d-md-block w-25 align-items-center">
-        <h5>Sweet Treats</h5>
+      <div class="carousel-caption  d-md-block w-25 align-items-center">
+        <h5>Bakery</h5>
 
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
       <img src="https://i.ibb.co/JzsK0vd/download.jpg" class="carisol d-block w-25 mx-auto mb-5" alt="savouries">
-      <div class="carousel-caption d-none d-md-block w-25">
+      <div class="carousel-caption  d-md-block w-25">
         <h5>Savouries</h5>
        
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://i.ibb.co/ZWvKWL3/download-1.jpg" class="carisol d-block w-25 mx-auto mb-5" alt="refreshments">
-      <div class="carousel-caption d-none d-md-block w-25">
+      <img src="https://i.ibb.co/ZzJLy9F/Sprite-Lemon-Lime-Flavoured-Drink-2-L-5449000234636.jpg" class="carisol d-block w-25 mx-auto mb-5" alt="refreshments">
+      <div class="carousel-caption d-sm-block d-md-block w-25">
         <h5>Refreshments</h5>
       </div>
     </div>
@@ -70,5 +70,10 @@ export default {
   text-align: center;
   margin-left: 251px;
   border-bottom: 30% 30%;
+}
+@media (300px<= width<=900px){
+   .{
+    align-items: center;
+   } 
 }
 </style>
