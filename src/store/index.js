@@ -9,7 +9,7 @@ const cookies = useCookies()
 import AuthenticateUser from '../service/Authentication.js'
 import router from '@/router/index.js'
 const liveUrl = 'https://duo-eomp-gs-ro.onrender.com'
-// const liveUrl = 'http://192.168.11.149:8081'
+// const liveUrl = 'http://localhost:8081'
 
 export default createStore({
     state: {
@@ -35,28 +35,39 @@ export default createStore({
 
     },
     actions: {
-        async register(context, payload) {
+        async addUser(context, payload) {
             try {
-                let {
-                    msg
-                } = (await fetch(`${liveUrl}users/register`, payload)).data
-                if (msg) {
-                    context.dispatch('fetchUsers')
+                let result = await fetch(`${liveUrl}/user/signup`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+                let data = await result.json()
+
+                console.log(data)
+                if( +data.status >= 400 ){
                     sweet({
-                        title: 'Registration',
-                        text: msg,
-                        icon: "success",
+                        title: "Error",
+                        text: "Couldn't create user",
+                        icon: "error",
                         timer: 2000
                     })
-                    //  
-                    router.push({
-                        name: 'login'
-                    })
+                    return;
                 }
-            } catch (e) {
                 sweet({
-                    title: 'Error',
-                    text: 'Please try again later',
+                    title: "User Added",
+                    text: "User added successfully",
+                    icon: "success",
+                    timer: 2000
+                })
+                context.dispatch('fetchUsers');
+            } catch (e) {
+                console.log(e)
+                sweet({
+                    title: "Error",
+                    text: "Couldn't create user",
                     icon: "error",
                     timer: 2000
                 })
@@ -104,50 +115,57 @@ export default createStore({
             }
         },
         async updateUser(context, payload) {
+            // console.log(context, payload);
             try {
-                let {
-                    msg
-                } = await fetch.patch(`${liveUrl}users/update/${payload.id}`)
-                if (msg) {
-                    context.dispatch('fetchUsers')
-                    sweet({
-                        title: 'Update user',
-                        text: msg,
-                        icon: "success",
-                        timer: 2000
-                    })
-                }
-            } catch (e) {
+                let result = await fetch(`${liveUrl}/user/updateuser/${payload.userID}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+                let data = await result.json();
                 sweet({
-                    title: 'Error',
-                    text: 'An error occurred when updating a user.',
+                    title: "User Updated",
+                    text: data.msg,
                     icon: "success",
                     timer: 2000
-                })
+                });
+                context.dispatch('fetchUsers');
+            } catch(e) {    
+                console.log(e)
+                sweet({
+                    title: "Error",
+                    text: "Could not update user",
+                    icon: "error",
+                    timer: 2000
+                });
             }
         },
         async deleteUser(context, payload) {
             try {
-                let {
-                    msg
-                } = await fetch.delete(`${liveUrl}users/${payload.id}`)
-                if (msg) {
-                    context.dispatch('fetchUsers')
-                    sweet({
-                        title: 'Delete user',
-                        text: msg,
-                        icon: "success",
-                        timer: 2000
-                    })
-                }
+                let result = await fetch(`${liveUrl}/user/deleteuser/${payload}`, {
+                    method: "DELETE"
+                })
+                let data = await result.json();
+                sweet({
+                    title: "User deleted",
+                    text: data.msg,
+                    icon: "success",
+                    timer: 2000
+                })
+                context.dispatch('fetchUsers');
             } catch (e) {
                 sweet({
-                    title: 'Error',
-                    text: 'An error occurred when deleting a user.',
+                    title: "Error",
+                    text: "Couldn't delete user",
                     icon: "error",
                     timer: 2000
                 })
             }
+        },
+        async editUser(context, payload) {
+            console.log(context, payload);
         },
         async login(context, payload) {
             try {
@@ -201,7 +219,7 @@ export default createStore({
                 let result = await fetch(`${liveUrl}/product`);
                 let data = await result.json();
                 context.commit("setProducts", data.result);
-            } catch(e) {
+            } catch (e) {
                 console.log(e)
             }
         },
@@ -229,7 +247,7 @@ export default createStore({
                 })
             }
         },
-        async addProduct(context, payload){
+        async addProduct(context, payload) {
             try {
                 let result = await fetch(`${liveUrl}/product/newProduct`, {
                     method: "POST",
@@ -241,7 +259,7 @@ export default createStore({
                 let data = await result.json();
                 console.log('ad', data);
                 context.dispatch('fetchProducts');
-            } catch(e) {
+            } catch (e) {
                 console.log(e)
                 sweet({
                     title: 'Error',
@@ -251,7 +269,7 @@ export default createStore({
                 });
             }
         },
-        async editProduct(context, payload){
+        async editProduct(context, payload) {
             try {
                 let result = await fetch(`${liveUrl}/product/editProduct/${payload.prodID}`, {
                     method: "PATCH",
@@ -263,8 +281,38 @@ export default createStore({
                 let data = await result.json();
                 console.log(data);
                 context.dispatch('fetchProducts');
-            } catch(e) {
+                sweet({
+                    title: 'Product Changed',
+                    text: 'Product updated',
+                    icon: 'success',
+                    timer: 2000
+                });
+            } catch (e) {
                 sweet({})
+            }
+        },
+        async deleteProduct(context, payload) {
+            try {
+                // console.log("payload: ", payload.prodID)
+                let result = await fetch(`${liveUrl}/product/delProduct/${payload}`, {
+                    method: "DELETE"
+                });
+                let data = await result.json();
+                console.log(data);
+                context.dispatch('fetchProducts');
+                sweet({
+                    title: "Product Deleted",
+                    text: "Product deleted successfully",
+                    icon: "success",
+                    timer: 2000
+                })
+            } catch (e) {
+                sweet({
+                    title: "Error",
+                    text: "Error occurred while trying to delete product",
+                    icon: "error",
+                    timer: 2000
+                })
             }
         }
     },

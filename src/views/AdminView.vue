@@ -29,49 +29,57 @@
                     </div>
                     <div class="modal-body border-0 px-5">
                         <div class="form-floating mb-3" data-bs-theme="dark">
-                            <input v-model="firstName" type="text" class="form-control bg-dark text-white" id="firstName"
+                            <input v-model="userTable.firstName" type="text" class="form-control bg-dark text-white" id="firstName"
                                 placeholder="First Name">
                             <label for="firstName" class="text-white">First Name</label>
                         </div>
                         <div class="form-floating mb-3" data-bs-theme="dark">
-                            <input v-model="lastName" type="" class="form-control bg-dark text-white" id="lastName" placeholder="Last Name">
+                            <input v-model="userTable.lastName" type="" class="form-control bg-dark text-white" id="lastName" placeholder="Last Name">
                             <label for="lastName" class="text-white">Last Name</label>
                         </div>
                         <div class="form-floating mb-3" data-bs-theme="dark">
-                            <input v-model="age" type="number" class="form-control bg-dark text-white" id="age" placeholder="Age">
+                            <input v-model="userTable.emailAdd" type="email" class="form-control bg-dark text-white" id="email" placeholder="Email Address">
+                            <label for="email" class="text-white">Email Address</label>
+                        </div>
+                        <div class="form-floating mb-3" data-bs-theme="dark">
+                            <input v-model="userTable.userPass" type="password" class="form-control bg-dark text-white" id="userPass" placeholder="Password">
+                            <label for="userPass" class="text-white">Password</label>
+                        </div>
+                        <div class="form-floating mb-3" data-bs-theme="dark">
+                            <input v-model="userTable.userAge" @input="parseValue" type="number" class="form-control bg-dark text-white" id="age" placeholder="Age">
                             <label for="age" class="text-white">Age</label>
                         </div>
                         <div class="dropdown mb-3" data-bs-theme="dark">
                             <button class="btn btn-danger shadow dropdown-toggle position-relative mx-auto"
                                 data-bs-toggle="dropdown" aria-expanded="false">Gender
-                                <span
+                                <span ref="genderBadge"
                                     class="badge position-absolute start-100 top-0 translate-middle shadow bg-secondary p-1">Male</span>
                             </button>
                             <ul class="dropdown-menu bg-dark">
-                                <li><button value="male" class="dropdown-item">Male</button></li>
-                                <li><button value="female" class="dropdown-item">Female</button></li>
-                                <li><button value="none" class="dropdown-item">None</button></li>
+                                <li><button value="male" class="dropdown-item" @click="setGender">Male</button></li>
+                                <li><button value="female" class="dropdown-item" @click="setGender">Female</button></li>
+                                <li><button value="other" class="dropdown-item" @click="setGender">Other</button></li>
                             </ul>
                         </div>
                         <div class="dropdown mb-3" data-bs-theme="dark">
                             <button class="btn btn-danger shadow dropdown-toggle position-relative mx-auto"
                                 data-bs-toggle="dropdown" aria-expanded="false">Role
-                                <span 
+                                <span ref="roleBadge"
                                     class="badge position-absolute start-100 top-0 translate-middle shadow bg-secondary p-1">Admin</span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><button value="user" class="dropdown-item">User</button></li>
-                                <li><button value="admin" class="dropdown-item">Admin</button></li>
+                                <li><button value="user" class="dropdown-item" @click="setRole">User</button></li>
+                                <li><button value="admin" class="dropdown-item" @click="setRole">Admin</button></li>
                             </ul>
                         </div>
                         <div class="form-floating mb-3" data-bs-theme="dark">
-                            <input v-model="profile" type="text" class="form-control bg-dark text-white" id="profile" placeholder="Profile">
+                            <input v-model="userTable.userProfile" type="text" class="form-control bg-dark text-white" id="profile" placeholder="Profile">
                             <label for="profile" class="text-white">Profile</label>
                         </div>
                     </div>
                     <div class="modal-footer border-0 px-5">
                         <button class="btn btn-secondary shadow">Reset</button>
-                        <button class="btn btn-warning shadow">Submit</button>
+                        <button @click="userModalSubmit" class="btn btn-warning shadow">Submit</button>
                     </div>
                 </div>
             </div>
@@ -97,12 +105,12 @@
                             <label for="productName" class="text-white">Product Name</label>
                         </div>
                         <div class="form-floating mb-3" data-bs-theme="dark">
-                            <input v-model="productTable.quantity" type="number" class="form-control bg-dark text-white" id="quantity"
+                            <input v-model="productTable.quantity" @input="parseValue" type="number" class="form-control bg-dark text-white" id="quantity"
                                 placeholder="Quantity">
                             <label for="quantity" class="text-white">Quantity</label>
                         </div>
                         <div class="form-floating mb-3" data-bs-theme="dark">
-                            <input v-model="productTable.price" type="number" class="form-control bg-dark text-white" id="price"
+                            <input v-model="productTable.price" @input="parseValue" type="number" class="form-control bg-dark text-white" id="price"
                                 placeholder="Price">
                             <label for="price" class="text-white">Price</label>
                         </div>
@@ -143,8 +151,8 @@
                         <td><a :href="product.prodUrl" target="_blank">{{ product.prodUrl }}</a></td>
                         <td class="d-flex">
                             <button class="btn btn-secondary m-1" data-bs-target="#productTable" data-bs-toggle="modal"
-                                @click="edit" :value="product.prodID">Edit</button>
-                            <button class="btn btn-danger m-1" @click="deleteBtn" :value="product.prodID">Delete</button>
+                                @click="editProduct" :value="product.prodID">Edit</button>
+                            <button class="btn btn-danger m-1" @click="deleteProduct" :value="product.prodID">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -178,8 +186,8 @@
                         <td>{{ user.emailAdd }}</td>
                         <td>{{ user.userProfile }}</td>
                         <td class="d-flex">
-                            <button class="btn btn-secondary m-1">Edit</button>
-                            <button class="btn btn-danger m-1">Delete</button>
+                            <button class="btn btn-secondary m-1" @click="editUser" data-bs-target="#userTable" data-bs-toggle="modal" :value="user.userID">Edit</button>
+                            <button class="btn btn-danger m-1" @click="deleteUser" :value="user.userID">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -189,6 +197,7 @@
 </template>
 
 <script>
+
 export default {
     name: "AdminView",
     data() {
@@ -197,15 +206,18 @@ export default {
                 prodID: 0,
                 category: "",
                 name: "",
-                quantity: "",
-                price: "",
+                quantity: 0,
+                price: 0,
                 image: ""
             },
             userTable: {
                 firstName: "",
                 lastName: "",
-                age: "",
-                profile: ""
+                Gender: "male",
+                userRole: "admin",
+                emailAdd: "",
+                userAge: 0,
+                userProfile: ""
             },
             userModalFunc: "Add",
             productModalFunc: "Add",
@@ -229,7 +241,7 @@ export default {
         }
     },
     methods: {
-        edit(event) {
+        editProduct(event) {
             this.userModalFunc = this.modalStates[1];
             this.productModalFunc = this.modalStates[1];
             this.productTable.prodID = +event.target.getAttribute('value');
@@ -241,8 +253,29 @@ export default {
             this.productTable.price = product.amount;
             this.productTable.image = product.prodUrl;
         },
-        deleteBtn(event){
+        deleteProduct(event){
             this.productTable.prodID = +event.target.getAttribute('value');
+            console.log(this.productTable.prodID)
+            this.$store.dispatch('deleteProduct', this.productTable.prodID);
+        },
+        editUser(event){
+            this.userModalFunc = this.modalStates[1];
+            this.productModalFunc = this.modalStates[1];
+            this.userTable.userID = +event.target.getAttribute('value');
+            let user = this.$store.state.users.find( (item) => item.userID === this.userTable.userID );
+
+            this.userTable.firstName = user.firstName;
+            this.userTable.lastName = user.lastName;
+            this.userTable.Gender = user.Gender;
+            this.userTable.userRole = user.userRole;
+            this.userTable.emailAdd = user.emailAdd;
+            this.userTable.userAge = user.userAge;
+            this.userTable.userProfile = user.userProfile;
+        },
+        deleteUser(event){
+            this.userTable.userID = +event.target.getAttribute('value');
+            console.log(this.userTable.userID)
+            this.$store.dispatch('deleteUser', this.userTable.userID);
         },
         setProductModal(){
             this.productModalFunc = this.modalStates[0];
@@ -255,14 +288,36 @@ export default {
                 image: ""
             }
         },
+        parseValue(){
+            if( this.productTable.quantity < 0 || this.productTable.price < 0 || this.userTable.userAge < 0 ){
+                this.productTable.quantity = 0;
+                this.productTable.price = 0;
+                this.userTable.userAge = 0;
+            }
+        },
         setUserModal(){
             this.userModalFunc = this.modalStates[0];
             this.userTable = {
                 firstName: "",
                 lastName: "",
-                age: "",
-                profile: ""
+                Gender: "male",
+                userRole: "admin",
+                emailAdd: "",
+                userAge: "",
+                userProfile: ""
             }
+        },
+        setGender(event){
+            let gender = event.target.getAttribute('value');
+            let _gender = gender.split('')[0].toUpperCase();
+            this.userTable.Gender = gender;
+            this.$refs.genderBadge.textContent = _gender + gender.slice(1, gender.length);
+        },
+        setRole(event){
+            let role = event.target.getAttribute('value');
+            let _role = role.split('')[0].toUpperCase();
+            this.userTable.userRole = role;
+            this.$refs.roleBadge.textContent = _role + role.slice(1, role.length);
         },
         productModalSubmit(){
             switch( this.productModalFunc ){
@@ -284,6 +339,28 @@ export default {
                         amount: this.productTable.price,
                         prodUrl: this.productTable.image
                     });
+                    break;
+                default:
+                    break;
+            }
+        },
+        userModalSubmit(){
+            switch( this.userModalFunc ){
+                case "Add":
+                    console.log(this.userModalFunc);
+                    this.$store.dispatch('addUser', {
+                        firstName: this.userTable.firstName,
+                        lastName: this.userTable.lastName,
+                        emailAdd: this.userTable.emailAdd,
+                        userPass: this.userTable.userPass,
+                        Gender: this.userTable.Gender,
+                        userRole: this.userTable.userRole,
+                        userAge: this.userTable.userAge,
+                        userProfile: this.userTable.userProfile
+                    });
+                    break;
+                case "Edit":
+                    this.$store.dispatch('updateUser', this.userTable);
                     break;
                 default:
                     break;
