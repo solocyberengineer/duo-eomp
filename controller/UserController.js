@@ -34,7 +34,7 @@ userRouter.post('/signup', bodyParser.json(), (req, res)=>{
         })
     }
 })
-userRouter.patch('/updateuser', bodyParser.json(), (req, res)=>{
+userRouter.patch('/updateuser/:id', bodyParser.json(), (req, res)=>{
     try {
         user.updateUser(req, res);
     } catch(e) {

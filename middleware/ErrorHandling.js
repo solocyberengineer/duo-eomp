@@ -25,15 +25,22 @@ function handleConnectionError(err, req, res){
                 status: 503,
                 msg: "Service in unavailable"
             })
-        }
-        if( err.errno == 1062 ){
+        } else if( err.errno == 1062 ){
             res.status(403).send({
                 status: 403,
-                msg: "Product already exists"
+                msg: "Already exists"
+            })
+        } else {
+            res.status(503).send({
+                status: 503,
+                msg: "Service in unavailable"
             })
         }
     } else {
-        next();
+        res.status(503).send({
+            status: 503,
+            msg: "Service in unavailable"
+        })
     }
 }
 
