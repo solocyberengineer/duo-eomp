@@ -72,7 +72,7 @@ export default {
   border-bottom: 30% 30%;
 }
 @media (300px<= width<=900px){
-   .{
+   .carousel-caption{
     align-items: center;
    } 
 }
