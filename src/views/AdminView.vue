@@ -1,10 +1,9 @@
 <template>
-   <div class="container-fluid vh-100 p-0">
-       <div class="row g-0">
-           <div class="col-12 d-flex align-items-center justify-content-center">
-               <h5 class="display-5 fs-2 fw-bold text-white p-3 bg-dark rounded-bottom-4">Admin</h5>
-           </div>
-       </div>
+   <div class="container-fluid  p-0">
+      
+         <div class="row">
+  <h2 class="display-2">About</h2>
+</div>
        <div class="row g-0 my-4 d-flex align-items-center justify-content-center">
            <div class="col-10 d-flex align-items-center justify-content-center">
                <button class="btn btn-danger fs-6 mx-1 text-white rounded-5 shadow" data-bs-target="#userTable"

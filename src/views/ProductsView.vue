@@ -3,51 +3,27 @@
     <div class="row">
       <h2 class="display-2">Products</h2>
     </div>
-<div id="searchP">
-  <input type="text" v-model="searchItem" placeholder="Search a product..." required class="form-control m-1" :onKeyup="searchProduct">
-  <button class=" btn btn-danger p-2 g-2 mx-2">Sort</button>
-  <button class=" btn btn-danger p-2 g-2">Filter</button>
-</div>
-<!-- <div v-if="filterProducts.length === 0">
-<p>No product found</p>
-</div>
-<div v-else>
-  <div class="filter-products">
-    <Card v-for="product in filterProducts" :key="product.id">
-        <template #cardHeader>
-          <h4 class="card-title">{{ product.category }}</h4>
-          <img :src="product.prodUrl" class="img-fluid card-img-top" alt="image">
+    <div id="searchP">
+      <input type="text" v-model="searchItem" @input="search" placeholder="Search a product..." required
+        class="form-control m-1">
+      <button class=" btn btn-danger p-2 g-2 mx-2" @click="sortProducts">Sort by Price</button>
+      <button class=" btn btn-danger p-2 g-2" @click="filter">Filter</button>
+    </div>
 
-        </template>
-        <template #cardBody>
-          <div class="d-flex justify-content-center flex wrap ">
-            <h5>{{ product.prodName }}</h5>
-
-            <p class="card-text">{{ product.quantity }} </p>
-          </div>
-        </template>
-        <template #cardFooter>
-          <router-link :to="`/product/${product.prodID}`"  class="btn btn-danger">View details</router-link>
-        </template>
-      </Card>
-  </div> -->
-<!-- </div> -->
-    <div v-if="products" class="bg-light d-flex flex-wrap row-cols-md-4 mx-2 g-4">
-      <Card v-for="prod in products" :key="prod.id">
+    <div v-if="products" class=" d-flex flex-wrap row-cols-md-4 mx-2 g-4">
+      <Card v-for="prod in products" :key="prod.id" class="mx-1">
         <template #cardHeader>
-          <h4 class="card-title">{{ prod.category }}</h4>
+          <h4 class="card-title bg-white">{{ prod.category }}</h4>
           <img :src="prod.prodUrl" class="img-fluid card-img-top" alt="image">
 
         </template>
         <template #cardBody>
-          <div class="d-flex justify-content-center flex wrap ">
+          <div class="d-flex justify-content-center flex wrap bg-white ">
             <h5>{{ prod.prodName }}</h5>
-
-            <p class="card-text">{{ prod.quantity }} </p>
           </div>
         </template>
         <template #cardFooter>
-          <router-link :to="`/product/${prod.prodID}`"  class="btn btn-danger">View details</router-link>
+          <router-link :to="`/product/${prod.prodID}`" class="btn btn-danger">View details</router-link>
         </template>
       </Card>
     </div>
@@ -58,10 +34,12 @@
 <script>
 import Card from '@/components/Card.vue';
 export default {
-  data(){
-return{
-  searchItem: ""
-}
+  data() {
+    return {
+      searchItem: "",
+      searchedProducts: null,
+      priceToggle: false
+    }
   },
 
   components: {
@@ -75,12 +53,29 @@ return{
   mounted() {
     this.$store.dispatch("fetchProducts")
   },
-  methods:{
-    searchProduct(){
+  methods: {
+    async search() {
+      await this.$store.dispatch('fetchProducts');
+      this.searchedProducts = this.products.filter((item) => {
+        if (item.prodName.toLowerCase().includes(this.searchItem.toLowerCase())) return item;
+      })
+      this.$store.dispatch('setProducts', this.searchedProducts);
+    },
+    sortProducts() {
+      let products = (this.searchedProducts) ? this.searchedProducts : this.products;
+      console.log(products)
 
+      this.priceToggle = (this.priceToggle) ? false : true;
+      if (this.priceToggle) {
+        products.sort((a, b) => {
+          return a.amount - b.amount
+        })
+      } else {
+        products.sort((a, b) => {
+          return b.amount - a.amount
+        })
+      }
     }
   }
 }
 </script>
-
-<style scoped></style>
