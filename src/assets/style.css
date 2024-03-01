@@ -31,8 +31,10 @@
 
   /* body */
 body{
+ 
     background-color: #188eee;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    
   
  
 }
@@ -45,9 +47,20 @@ body{
     height: 250px;
   }
   /* home */
+ 
   #logotext{
+    background-color: black;
     margin: 10px;
-    transform: rotate(45deg);
+    transform: rotate(45deg) ;
+    animation: growAndRotate 2s forwards;
+  }
+  @keyframes growAndRotate{
+    0%{
+      transform: rotate(0deg) scale(1)
+    }
+    100%{
+      transform: rotate(-360deg) scale(1.5);
+    }
   }
   .navbar-brand{
     width:  70px;

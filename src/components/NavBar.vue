@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg shadow bg-warning sticky-top h-auto">
   <div class="container-fluid w-100 h-100">
-    <img src="https://i.ibb.co/6g2TwNM/Screenshot-2024-02-26-161040.png" class="navbar-brand img-fluid d-sm-flex" href="#">
+    <img src="https://i.ibb.co/dp4yhrw/Screenshot-2024-03-01-101058.png" class="navbar-brand img-fluid d-sm-flex" href="#">
     <button class="btn btn-danger shadow d-lg-none d-sm-block" data-bs-toggle="offcanvas" data-bs-target="#sideNav"><i class="bi bi-list"></i></button>
     <div class="collapse navbar-collapse ms-auto g-2" id="navbarNav">
       <ul class="navbar-nav">
