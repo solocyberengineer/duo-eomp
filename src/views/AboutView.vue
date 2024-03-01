@@ -1,5 +1,5 @@
 <template>
-  <div class="container vh-100">
+  <div class="container ">
 <div class="row">
   <h2 class="display-2">About</h2>
 </div>
@@ -13,6 +13,9 @@
   our family and friends and since then our clientele has grown tremendously </span>
   </p>
 </div>
+<div class="animation">
+  <h2 class="anime fw-bolder text-white ">Heaven Delights</h2>
+</div>
 </div>
 
 </template>
@@ -20,5 +23,24 @@
 .about{
   font-weight: 150;
   font-size: large;
+}
+
+.anime{
+  font-size: 150px;
+ 
+}
+.animation{
+  position: relative;
+  animation: fallFromTop 1.5s ease forwards
+}
+@keyframes fallFromTop{
+  from{
+    transform: translateY(-100%);
+    opacity:0
+  }
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

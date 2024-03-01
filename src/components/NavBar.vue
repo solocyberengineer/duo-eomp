@@ -3,21 +3,21 @@
   <div class="container-fluid w-100 h-100">
     <img src="https://i.ibb.co/6g2TwNM/Screenshot-2024-02-26-161040.png" class="navbar-brand img-fluid d-sm-flex" href="#">
     <button class="btn btn-danger shadow d-lg-none d-sm-block" data-bs-toggle="offcanvas" data-bs-target="#sideNav"><i class="bi bi-list"></i></button>
-    <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+    <div class="collapse navbar-collapse ms-auto g-2" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item m-1">
+        <li class="nav-item mx-1">
           <router-link to="/" class="nav-link active bg-danger shadow rounded-5" :class ="{'active': this.activePage()===0 }" aria-current="page" href="#">Home</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <router-link to="/about" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 1 }"  href="#">About</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <router-link to="/products" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 2 }"  href="#">Products</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <router-link to="/admin" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 3 }"  href="#">Admin</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <router-link to="/contact" class="nav-link bg-danger shadow rounded-5" :class="{ 'active': this.activePage() === 4 }"  href="#">Contact us</router-link>
         </li>
     

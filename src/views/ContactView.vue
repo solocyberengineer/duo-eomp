@@ -3,7 +3,7 @@
 <div class="row">
   <h2 class="display-2">Contact us</h2>
 </div>
-<div class="formation align-content-sm-center justify-content-center">
+<div class="formation align-content-sm-center justify-content-center bg-danger">
   <form action="https://formspree.io/f/xbjnljop" method="post">
                 <div class="forming row col-12 m-0">
                     <label for="firstname">First name:</label>
@@ -56,10 +56,7 @@ heavensdelight@gmail.com </h4></div>
 </script>
 
 <style  scoped>
-.formation{
-  background-color: red;
 
-}
 .formation label{
   width: 100%;
 font-weight: bold;
